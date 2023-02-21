@@ -1,0 +1,20 @@
+{
+    "config": {
+        "OPENSSL_SUBJ": "/C=US/ST=California/L=Santa Clara",
+        "OPENSSL_CA": "CN=fake-CA",
+        "OPENSSL_SERVER": "CN=fake-server",
+        "OPENSSL_CLIENT": "CN=fake-client"
+    },
+    "scripts": {
+        "build-gencerts": "docker build -t damp/gencerts gencerts",
+        "gencerts": "mkdir -p certs && npm-run-all cert:root cert:server cert:client",
+        "cert:root": "sh -x ./genroot.sh \"${npm_package_config_OPENSSL_SUBJ}/${npm_package_config_OPENSSL_CA}\"",
+        "cert:server": "sh -x ./genserver.sh \"${npm_package_config_OPENSSL_SUBJ}/${npm_package_config_OPENSSL_SERVER}\"",
+        "cert:client": "sh -x ./genclient.sh \"${npm_package_config_OPENSSL_SUBJ}/${npm_package_config_OPENSSL_CLIENT}\"",
+        "run-server": "docker-compose up"
+    },
+    "dependencies": {
+        "mysql": "^2.18.1",
+        "npm-run-all": "^4.1.5"
+    }
+}
