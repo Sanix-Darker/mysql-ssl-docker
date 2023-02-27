@@ -1,7 +1,7 @@
 const fs = require('fs');
 const mysql = require('mysql');
 
-var connection = mysql.createConnection({
+let connection = mysql.createConnection({
     host: '127.0.0.1',
     port: '3306',
     user: 'wpuserssl',
@@ -15,10 +15,10 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+connection.query(
+    'SELECT 1 + 1 AS solution',
+    function (error, results, fields) {
     if (error) throw error;
     console.log('The solution is: ', results[0].solution);
-  });
-   
-  connection.end();
+});
+connection.end();
