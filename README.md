@@ -3,6 +3,7 @@
 Connect with SSL to MySQL in Docker container
 
 ```bash
-mkdir databases certs
+bash ./gencerts.sh
 docker-compose up
 ```
+asdcasdc 

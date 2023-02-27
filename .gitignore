@@ -1,5 +1,5 @@
-certs
+!certs
 mysql-data
 node_modules
-database
+!database
 package-lock.json
